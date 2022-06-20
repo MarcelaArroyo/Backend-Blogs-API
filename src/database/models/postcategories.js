@@ -1,4 +1,4 @@
-const PostCategoriesSchema = (sequeliza, DataTypes) => {
+const PostCategoriesSchema = (sequelize, DataTypes) => {
   const PostCategoriesTable = sequelize.define('PostCategories', {},
     { timestamps: false, tableName: 'PostsCategories' }
   );
