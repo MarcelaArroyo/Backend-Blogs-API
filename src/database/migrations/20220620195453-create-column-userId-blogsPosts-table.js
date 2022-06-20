@@ -10,11 +10,11 @@ module.exports = {
         key: 'id'
       },
       onUpdate: 'CASCADE',
-      onDelere: 'CASCADE'
+      onDelete: 'CASCADE'
     });
   },
 
   down: async (queryInterface, Sequelize) => {
-   await queryInterface.dropTable('BlogPosts', 'userId');
+   await queryInterface.removeColumn('BlogPosts', 'userId');
   }
 };
