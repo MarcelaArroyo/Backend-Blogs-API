@@ -4,11 +4,11 @@ const loginRouter = express.Router();
 
 const { loginValidation } = require('../middlewares/login.middleware');
 
-const { authotication } = require('../services/login.service');
+const { authentication } = require('../services/login.service');
 
 loginRouter.post('/', loginValidation, async (req, res) => {
   try {
-    const token = await authotication(req.body);
+    const token = await authentication(req.body);
 
     if (token.errMessage) {
       return res.status(400).json({ message: token.errMessage });
