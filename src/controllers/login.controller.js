@@ -4,17 +4,17 @@ const loginRouter = express.Router();
 
 const { loginValidation } = require('../middlewares/login.middleware');
 
-const { hasUser } = require('../services/login.service');
+const { authotication } = require('../services/login.service');
 
 loginRouter.post('/', loginValidation, async (req, res) => {
   try {
-    const user = await hasUser(req.body);
+    const token = await authotication(req.body);
 
-    if (user.length !== 0) {
-      return res.status(200).json(user);
+    if (token.errMessage) {
+      return res.status(400).json({ message: token.errMessage });
     }
 
-    res.status(400).json({ message: 'Invalid fields' });
+    res.status(200).json(token);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
