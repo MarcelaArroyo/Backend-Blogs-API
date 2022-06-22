@@ -5,7 +5,10 @@ const userRouter = express.Router();
 const { userValidation } = require('../middlewares/user.middleware');
 const { tokenValidation } = require('../middlewares/token.middleware');
 
-const { createUser, getAllUsers } = require('../services/user.service');
+const { createUser,
+  getAllUsers,
+  getUserById,
+} = require('../services/user.service');
 
 userRouter.post('/', userValidation, async (req, res) => {
   try {
@@ -24,6 +27,15 @@ userRouter.post('/', userValidation, async (req, res) => {
 userRouter.get('/', tokenValidation, async (req, res) => {
   const users = await getAllUsers();
   res.status(200).json(users);
+});
+
+userRouter.get('/:id', tokenValidation, async (req, res) => {
+  const { id } = req.params;
+  const user = await getUserById(id);
+
+  if (!user) return res.status(404).json({ message: 'User does not exist' }); 
+
+  res.status(200).json(user);
 });
 
 module.exports = userRouter;
