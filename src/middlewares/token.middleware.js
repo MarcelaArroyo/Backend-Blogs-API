@@ -9,7 +9,7 @@ const tokenValidation = async (req, res, next) => {
 
   const payload = await verifyToken(token);
 
-  if (!payload) return res.status(401).json({ message: 'Expired or invalid token' });
+  if (payload.errMessage) return res.status(401).json({ message: payload.errMessage });
 
   res.locals.payload = payload;
 

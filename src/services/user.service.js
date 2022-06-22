@@ -15,6 +15,11 @@ const createUser = async ({ displayName, email, password, image }) => {
   return { token };
 };
 
+const getAllUsers = () => User.findAll({
+  attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
+});
+
 module.exports = {
   createUser,
+  getAllUsers,
 };
