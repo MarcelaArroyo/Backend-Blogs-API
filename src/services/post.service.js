@@ -51,8 +51,22 @@ const getPostById = (id) => BlogPost.findOne({
   attributes: { exclude: ['createdAt', 'updatedAt'] },
 });
 
+const uptadePost = async ({ title, content }, id) => {
+  const [qtdUpdated] = await BlogPost.update({
+    title,
+    content,
+    updated: new Date(),
+  },
+  {
+    where: { id },
+  });
+
+  if (qtdUpdated > 0) return getPostById(id);
+};
+
 module.exports = {
   createPost,
   getAllPosts,
   getPostById,
+  uptadePost,
 };
