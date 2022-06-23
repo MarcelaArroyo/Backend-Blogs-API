@@ -5,7 +5,7 @@ const postRouter = express.Router();
 const { tokenValidation } = require('../middlewares/token.middleware');
 const { postValidation } = require('../middlewares/post.middleware');
 
-const { createPost, getAllPosts } = require('../services/post.service');
+const { createPost, getAllPosts, getPostById } = require('../services/post.service');
 
 postRouter.post('/', tokenValidation, postValidation, async (req, res) => {
   const user = res.locals.payload;
@@ -19,6 +19,15 @@ postRouter.post('/', tokenValidation, postValidation, async (req, res) => {
 postRouter.get('/', tokenValidation, async (req, res) => {
   const posts = await getAllPosts();
   res.status(200).json(posts);
+});
+
+postRouter.get('/:id', tokenValidation, async (req, res) => {
+  const { id } = req.params;
+  const post = await getPostById(id);
+
+  if (!post) return res.status(404).json({ message: 'Post does not exist' });
+
+  res.status(200).json(post);
 });
 
 module.exports = postRouter;

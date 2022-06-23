@@ -25,19 +25,34 @@ const createPost = async ({ title, content, categoryIds }, userId) => {
 };
 
 const getAllPosts = () => BlogPost.findAll({
-    include: [{
-      model: User,
-      as: 'user',
-      attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
-    },
-    { model: Category,
-      as: 'categories',
-      attributes: { exclude: ['createdAt', 'updatedAt'] },
-    }],
+  include: [{
+    model: User,
+    as: 'user',
+    attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
+  },
+  { model: Category,
+    as: 'categories',
     attributes: { exclude: ['createdAt', 'updatedAt'] },
-  });
+  }],
+  attributes: { exclude: ['createdAt', 'updatedAt'] },
+});
+
+const getPostById = (id) => BlogPost.findOne({
+  where: { id },
+  include: [{
+    model: User,
+    as: 'user',
+    attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
+  },
+  { model: Category,
+    as: 'categories',
+    attributes: { exclude: ['createdAt', 'updatedAt'] },
+  }],
+  attributes: { exclude: ['createdAt', 'updatedAt'] },
+});
 
 module.exports = {
   createPost,
   getAllPosts,
+  getPostById,
 };
