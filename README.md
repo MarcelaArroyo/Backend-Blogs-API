@@ -1,6 +1,6 @@
 # Projeto Blogs-API
 
-É a criação de um API REST E RESTful com node.js e express, construida em camadas de Arquitetura (controllers, middleware, services e models). Criando o banco de dados relacional sql e as relaçoes das tabelas com o mapeamento objeto-relacional (ORM) Sequelize. Além disso, é utilizada a biblioteca JasonWebToken (jwt) para gerar um token do usuário e fazer a verificação desse token.
+É a criação de uma API REST E RESTful com node.js e express, construida em camadas de Arquitetura (controllers, middleware, services e models). Criando o banco de dados relacional sql e as relaçõess entre as tabelas com o mapeamento objeto-relacional (ORM) Sequelize. Além disso, é utilizada a biblioteca JasonWebToken (jwt) para gerar um token do usuário e fazer a verificação desse token.
 
 * Rota /login, endpoint POST que verifica se o usuário possui um cadastro, se sim gera um token, se não retorna uma mensagem de erro.
 
