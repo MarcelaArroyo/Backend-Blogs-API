@@ -14,4 +14,4 @@
 * Rota /post, endpoint GET que lista todos os posts
 * Rota /post/:id, endpoint GET que lista o post pelo ID
 * Rota /post, endpoint POST que cria um post
-* Rota /post, endpoint PUT que atualiza um post
+* Rota /put, endpoint PUT que atualiza um post
